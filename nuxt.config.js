@@ -14,13 +14,41 @@ module.exports = {
                             component: resolve(__dirname, 'pages/home/'),
                         },
                         {
-                            name:'about',
-                            path: '/about',
-                            component: resolve(__dirname, 'pages/about'),
+                            name:'profile',
+                            path: '/profile/:username',
+                            component: resolve(__dirname, 'pages/profile'),
+                        },
+                        {
+                            name:'login',
+                            path: '/login',
+                            component: resolve(__dirname, 'pages/loginAndRegister'),
+                        },
+                        {
+                            name:'register',
+                            path: '/register',
+                            component: resolve(__dirname, 'pages/loginAndRegister'),
+                        },
+                        {
+                            name:'setting',
+                            path: '/setting',
+                            component: resolve(__dirname, 'pages/setting'),
+                        },
+                        {
+                            name:'article',
+                            path: '/article/:slug',
+                            component: resolve(__dirname, 'pages/article'),
+                        },
+                        {
+                            name:'editor',
+                            path: '/editor',
+                            component: resolve(__dirname, 'pages/editor'),
                         }
                     ]
                 }
             ])
-          }
-    }
+        },
+        linkActiveClass:'active'
+    },
+    //注册插件 ~代表从根路径出发
+    plugins:['~/plugins/request.js']
 }
