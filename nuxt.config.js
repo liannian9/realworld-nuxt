@@ -47,7 +47,8 @@ module.exports = {
                 }
             ])
         },
-        linkActiveClass:'active'
+        linkActiveClass:'active',
+        base: '/realworld-nuxt/'
     },
     //注册插件 ~代表从根路径出发
     plugins:['~/plugins/request.js']
