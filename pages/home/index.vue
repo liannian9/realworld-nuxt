@@ -37,7 +37,6 @@
                 <img :src="article.author.image" />
               </nuxt-link>
               <div class="info">
-                <a href class="author">Eric Simons</a>
                 <nuxt-link
                   :to="{
                   name: 'profile',
@@ -46,11 +45,13 @@
                   }
               }"
                 >{{article.author.username}}</nuxt-link>
-                <span class="date">{{article.createdAt}}</span>
+                <span class="date">{{article.createdAt | date('MM DD, YYYY')}}</span>
               </div>
               <button
                 class="btn btn-outline-primary btn-sm pull-xs-right"
                 :class="{active:article.favorited}"
+                @click="onFavorite(article)"
+                :disabled="article.favoriteDisabled"
               >
                 <i class="ion-heart"></i>
                 {{article.favoritesCount}}
@@ -91,7 +92,7 @@
   </div>
 </template>
 <script>
-import { getArticles, getTags, getYourFeedArticles } from "@/api/home";
+import { getArticles, getTags, getYourFeedArticles, deleteFavorite, addFavorite } from "@/api/home";
 import {mapState} from "vuex";
 
 export default {
@@ -112,6 +113,9 @@ export default {
     ])
     const {articles, articlesCount} = articleRes.data;
     const {tags} = tagRes.data;
+    articles.forEach((item) => {
+      item.favoriteDisabled = false
+    })
     return {
       articles, //文章列表
       articlesCount, //文章总数
@@ -129,6 +133,23 @@ export default {
       return Math.ceil(this.articlesCount / this.limit);
     },
   },
+  methods:{
+    async onFavorite(article) {
+      console.log(article)
+      article.favoriteDisabled = true;
+      if (article.favorited) {
+        await deleteFavorite(article.slug);
+        article.favorited = false
+        article.favoritesCount += -1
+      } else {
+        await addFavorite(article.slug);
+        article.favorited = true
+        article.favoritesCount += 1
+      }
+            article.favoriteDisabled = false;
+
+    }
+  }
 };
 </script>
 

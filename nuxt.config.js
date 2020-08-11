@@ -48,12 +48,17 @@ module.exports = {
             ])
         },
         linkActiveClass:'active',
-        base:'/realworld-nuxt/'
+        // pages发布
+        // base:'/realworld-nuxt/'
     },
     //注册插件 ~代表从根路径出发
-    plugins:['~/plugins/request.js'],
-    generate:{
-        dir:'docs',
-        subFolders:false
-    }
+    plugins:[
+        '~/plugins/request.js',
+        '~/plugins/dayjs.js'
+    ],
+    // pages发布
+    // generate:{
+    //     dir:'docs',
+    //     subFolders:false
+    // }
 }

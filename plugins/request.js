@@ -18,7 +18,8 @@ export const request = axios.create({
 
 //只有将其当作插件导出 才能拿到相应的上下文对象（ query，params，req，res， store ...）
 //插件导出必须使用export default 
-export default ({store}) => {
+export default (context) => {
+    const {store, app} = context;
     request.interceptors.request.use(function(config) {
         const {auth} = store.state;
         if (auth && auth.token) {
@@ -27,6 +28,14 @@ export default ({store}) => {
         return config
     }, function (err) {
         //请求失败 如果此时请求还未发出 会进入这里
+        return Promise.reject(err)
+    }),  
+    request.interceptors.response.use(response => Promise.resolve(response), function (err) {
+        console.log(err.response.status === 401, 'err');
+        if (err && err.response && err.response.status === 401) {
+            app.router.push('/login')
+            return 
+        }
         return Promise.reject(err)
     })  
 }
