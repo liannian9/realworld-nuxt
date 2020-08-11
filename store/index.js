@@ -17,7 +17,7 @@ export const actions = {
     //该方法只会在服务端渲染期间自动调用
     nuxtServerInit({commit}, {req}){
         let auth = null;
-        if(req.headers.cookie) {
+        if(req && req.headers && req.headers.cookie) {
             const parsed = cookieparser.parse(req.headers.cookie)
             try {
                 auth = JSON.parse(parsed.auth) 
