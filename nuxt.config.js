@@ -52,8 +52,11 @@ module.exports = {
         // base:'/realworld-nuxt/'
     },
     //注册插件 ~代表从根路径出发
-    plugins:['~/plugins/request.js'],
-    //todo发布pages配置
+    plugins:[
+        '~/plugins/request.js',
+        '~/plugins/dayjs.js'
+    ],
+    // pages发布
     // generate:{
     //     dir:'docs',
     //     subFolders:false
