@@ -40,7 +40,7 @@ module.exports = {
                         },
                         {
                             name:'editor',
-                            path: '/editor',
+                            path: '/editor/:slug?',
                             component: resolve(__dirname, 'pages/editor'),
                         }
                     ]
@@ -56,6 +56,10 @@ module.exports = {
         '~/plugins/request.js',
         '~/plugins/dayjs.js'
     ],
+    server:{
+        host:'0.0.0.0',
+        port:3000
+    }
     // pages发布
     // generate:{
     //     dir:'docs',

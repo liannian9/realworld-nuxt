@@ -20,7 +20,7 @@ export const register = (data) => {
 export const updateUser = (data) => {
     return  request({
         method:'PUT',
-        url:'/api/users',
+        url:'/api/user',
         data
     })
 }
@@ -28,6 +28,6 @@ export const updateUser = (data) => {
 export const getUser = () => {
     return  request({
         method:'GET',
-        url:'/api/users',
+        url:'/api/user',
     })
 }

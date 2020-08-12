@@ -146,7 +146,7 @@ export default {
         article.favorited = true
         article.favoritesCount += 1
       }
-            article.favoriteDisabled = false;
+      article.favoriteDisabled = false;
 
     }
   }

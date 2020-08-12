@@ -11,10 +11,11 @@ export const createArticle = (data) => {
 
 //更新文章
 
-export const updateArticle = (slug) => {
+export const updateArticle = (data, slug) => {
     return  request({
         method:'PUT',
         url:`/api/articles/${slug}`,
+        data
     })
 }
 
