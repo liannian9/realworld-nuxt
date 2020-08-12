@@ -37,7 +37,6 @@
                 <img :src="article.author.image" />
               </nuxt-link>
               <div class="info">
-                <a href class="author">Eric Simons</a>
                 <nuxt-link
                   :to="{
                   name: 'profile',
