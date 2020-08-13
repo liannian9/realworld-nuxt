@@ -104,7 +104,7 @@ export default {
     async mounted() {
         const {data} = await getProfile(this.$route.params.username)
         const {data:articleData} = await getArticles({
-          [this.tab]:this.auth.username
+          [this.tab]:this.$route.params.username
         })
         
         console.log(articleData, 'articleData about')
@@ -129,7 +129,7 @@ export default {
       async changeTab(tab) {
         this.tab = tab
         const {data:articleData} = await getArticles({
-          [tab]:this.auth.username
+          [tab]:this.$route.params.username
         })
         this.articles = articleData.articles
       },
