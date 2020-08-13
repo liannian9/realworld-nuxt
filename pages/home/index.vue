@@ -72,7 +72,7 @@
                 :key="item"
                 :class="{active:item == page}"
                 >
-                <nuxt-link class="page-link ng-binding" :to="{name:'home', query:{page:item, tag:$route.query.tag}}">{{item}}</nuxt-link>
+                <nuxt-link class="page-link ng-binding" :to="{name:'home', query:{page:item, tab:$route.query.tab, tag:$route.query.tag}}">{{item}}</nuxt-link>
               </li>
             </ul>
           </nav>
