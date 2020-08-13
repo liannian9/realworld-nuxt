@@ -1,10 +1,12 @@
 name: Publish And Deploy Demo
+# 监听push只有是tag才会部署
 on:
   push:
     tags:
       - 'v*'
 
 jobs:
+  # 打包及发布
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
@@ -18,6 +20,7 @@ jobs:
       uses: actions/setup-node@master
     - run: npm install
     - run: npm run build
+    # 将.nuxt static nuxt.config.js package.json package-lock.json pm2.config.json文件打包压缩为release.tgz
     - run: tar -zcvf release.tgz .nuxt static nuxt.config.js package.json package-lock.json pm2.config.json
 
     # 发布 Release
