@@ -95,6 +95,7 @@ import {mapState} from "vuex";
 import { getProfile,  } from "@/api/profile";
 import { getArticles,  } from "@/api/home";
 import { followUser, unFollowUser } from "@/api/profile";
+import {deleteFavorite, addFavorite } from "@/api/home";
 
 
 export default {
@@ -122,7 +123,8 @@ export default {
             profile:{},
             tab:'author',
             articles:[],
-            followDisabled:false
+            followDisabled:false,
+            favoriteDisabled:false
         }
     },
     methods:{
@@ -146,6 +148,20 @@ export default {
         }
         this.followDisabled = false;
       },
+      async onFavorite(article) {
+      this.favoriteDisabled = true;
+      if (article.favorited) {
+        await deleteFavorite(article.slug);
+        article.favorited = false
+        article.favoritesCount += -1
+      } else {
+        await addFavorite(article.slug);
+        article.favorited = true
+        article.favoritesCount += 1
+      }
+      this.favoriteDisabled = false;
+
+    },
     }
 }
 </script>
