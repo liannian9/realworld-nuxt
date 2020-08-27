@@ -97,7 +97,18 @@ import {mapState} from "vuex";
 
 export default {
   name: "homeIndex",
+  beforeCreate(){
+    console.log('before create')
+  },
+  created(){
+    console.log('created')
+  },
+  beforeMount() {
+    console.log('before beforeMount')
+
+  },
   async asyncData({ query }) {
+    console.log('asyncData')
     const limit = Number.parseInt(query.limit || 20);
     const page = Number.parseInt(query.page || 1);
     const tab = query.tab || 'global_feed'
@@ -105,9 +116,9 @@ export default {
     let loadArticles = tab === 'your_feed' ? getYourFeedArticles : getArticles;
     const [articleRes, tagRes] = await Promise.all([
         loadArticles({
-        limit,
-        offset: (page - 1) * limit,
-        tag
+          limit,
+          offset: (page - 1) * limit,
+          tag
         }),
         getTags()
     ])

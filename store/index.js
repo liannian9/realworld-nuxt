@@ -11,7 +11,6 @@ export const mutations = {
         state.auth = auth
     }
 }
-
 export const actions = {
     //初始化容器以及需要传递给客户端的数据
     //该方法只会在服务端渲染期间自动调用
